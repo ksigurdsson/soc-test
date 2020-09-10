@@ -33,6 +33,8 @@ Setup Environment
       ::
 
          python3 -m venv .venv
+         .venv/bin/pip -q install --upgrade pip
+         .venv/bin/pip -q install -r requirements.txt
 
    .. group-tab:: Shell Output
                   
