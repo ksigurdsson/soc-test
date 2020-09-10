@@ -24,7 +24,7 @@ Goals
 Setup Environment
 *****************
 
-.# Create a Python virtualenv
+#. Create a Python virtualenv
 
 .. tabs::
 
