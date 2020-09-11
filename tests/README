@@ -1,0 +1,15 @@
+Run:
+pytest
+
+Run without traceback i.e. simply show pass/fails
+pytest --tb=no
+
+Run listing out individual tests (verbose)
+pytest --tb=no -v
+
+pytest -v --tb=no -s
+pytest -v -s -o usefixtures="" suite_a/test_feature_b.py
+
+Fixtures detailed here:
+https://docs.pytest.org/en/latest/fixture.html#fixture
+https://www.tutorialspoint.com/pytest/pytest_fixtures.htm
