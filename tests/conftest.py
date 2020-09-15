@@ -10,17 +10,26 @@ import pytest
 #       or for each set of tests (module)
 #       or for all tests (session)
 
-
+def pytest_addoption(parser):
+    parser.addoption("--sim",
+                     action="store_true",
+                     help="run test(s) in simulation environment")
 
 
 
 @pytest.fixture(scope="module", params=["0.72", "0.8", "0.88"], ids=["VMin", "VTyp", "VMax"])
 def chip_init(env_init, request):
-    voltage = request.param
+
     #-=========================================================================-
     # Setup Phase
     #-=========================================================================-
-    print("  Powering ON VCore:", voltage)
+
+    if request.config.getoption("sim"):
+        voltage = 0
+        print("SIMULATING")
+    else:
+        voltage = request.param
+        print("  Powering ON VCore:", voltage)
 
     # Measure VCore - if not reading what was requested then raise an exception
     # Note: that if an exception happens during the setup code (before the yield keyword),
