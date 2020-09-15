@@ -10,8 +10,12 @@ import pytest
 #       or for each set of tests (module)
 #       or for all tests (session)
 
+
+
+
+
 @pytest.fixture(scope="module", params=["0.72", "0.8", "0.88"], ids=["VMin", "VTyp", "VMax"])
-def power_vcore(force_temp, request):
+def chip_init(env_init, request):
     voltage = request.param
     #-=========================================================================-
     # Setup Phase
@@ -37,7 +41,7 @@ def power_vcore(force_temp, request):
     
 
 @pytest.fixture(scope="session", params=["0", "25", "125"], ids=["TMin", "TTyp", "TMax"])
-def force_temp(request):
+def env_init(request):
     temp = request.param
     #-=========================================================================-
     # Setup Phase
@@ -61,6 +65,6 @@ def force_temp(request):
     # addfinalizer method of the request-context object to register finalization functions.
     print("  Releasing Temp Force")
 
-@pytest.fixture(scope="session")
-def asic_regress(power_vcore, force_temp):
-    return power_vcore, force_temp
+#@pytest.fixture(scope="session")
+#def asic_regress(chip_init, env_init):
+#    return chip_init, env_init
